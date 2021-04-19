@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./styles/global.css" />
+    <script src="./scripts/script.js" defer></script>
+  </head>
+  <body>
+    <main>
+      <div class="form-recipe">
+        <h1>Create a recipe</h1>
+        <div class="form-group">
+          <div class="categories">
+            <button class="category-btn">
+              <div
+                class="icon"
+                style="background-image: url('assets/svg/081-food.svg')"
+              ></div>
+              <p class="name">Main dish</p>
+            </button>
+            <button class="category-btn">
+              <div
+                class="icon"
+                style="background-image: url('assets/svg/014-cupcake.svg')"
+              ></div>
+              <p class="name">Desserts</p>
+            </button>
+            <button class="category-btn">
+              <div
+                class="icon"
+                style="background-image: url('assets/svg/vegan.svg')"
+              ></div>
+              <p class="name">Vege</p>
+            </button>
+            <button class="category-btn">
+              <div
+                class="icon"
+                style="background-image: url('assets/svg/090-toaster.svg')"
+              ></div>
+              <p class="name">Breakfast</p>
+            </button>
+            <button class="category-btn">
+              <div
+                class="icon"
+                style="background-image: url('assets/svg/206-bowl.svg')"
+              ></div>
+              <p class="name">Soups</p>
+            </button>
+            <button class="category-btn">
+              <div
+                class="icon"
+                style="background-image: url('assets/svg/174-salad.svg')"
+              ></div>
+              <p class="name">Salads</p>
+            </button>
+            <button class="category-btn">
+              <div
+                class="icon"
+                style="background-image: url('assets/svg/002-boiled.svg')"
+              ></div>
+              <p class="name">Starters</p>
+            </button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="inputs-col">
+            <div class="form-group">
+              <label for="title">Title</label>
+              <input id="title" />
+            </div>
+            <div class="form-group">
+              <label for="ingredients">Ingredients</label>
+              <input id="ingredients" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea id="description"></textarea>
+          </div>
+        </div>
+        <div class="btns-box">
+          <button class="btn add-btn">ADD</button>
+          <button class="btn cancel-btn">CANCEL</button>
+        </div>
+      </div>
+      <div class="search-recipe">
+        <span class="close-search-btn"></span>
+        <h1>Search a recipe</h1>
+        <div class="input-box">
+          <input type="text" placeholder="Search..." />
+          <div class="search-icon">
+            <img src="/assets/bx-search.svg" />
+          </div>
+        </div>
+      </div>
+      <div class="sidebar">
+        <div class="btns-box">
+          <button class="btn" id="create-recipe">
+            <div
+              class="btn-icon"
+              style="background-image: url('/assets/bx-plus.svg"
+            ></div>
+          </button>
+          <button class="btn" id="search-recipe">
+            <div
+              class="btn-icon"
+              style="background-image: url('assets/bx-search.svg')"
+            ></div>
+          </button>
+        </div>
+        <div class="categories">
+          <span class="category">BREAKFAST</span>
+          <span class="category">MAIN DISH</span>
+          <span class="category">DESSERTS</span>
+          <span class="category">STARTERS</span>
+          <span class="category">SALADS</span>
+          <span class="category">SOUPS</span>
+          <span class="category">VEGE</span>
+        </div>
+      </div>
+      <div class="recipes">
+        <!-- <div class="arrow left-arrow"></div>
+        <div class="arrow right-arrow"></div> -->
+        <div class="recipes-list"> </div>
+      </div>
+      <div class="recipe-details"> </div>
+    </main>
+  </body>
+</html>

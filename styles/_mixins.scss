@@ -1,0 +1,218 @@
+@import "variables";
+
+@mixin hidden-box {
+  overflow: hidden;
+  width: 0;
+  opacity: 0;
+}
+@mixin icon-size {
+  width: $icon-size;
+  height: $icon-size;
+}
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@mixin scroll {
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 20px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+}
+@mixin sidebar-size {
+  width: $sidebar-width;
+  height: 100vh;
+}
+@mixin sidebar-bg {
+  background-color: $sidebar-background-color;
+}
+
+@mixin sidebar-category {
+  font-size: $sidebar-category-font-size;
+  color: $text-color;
+}
+@mixin sidebar-category-hover {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  bottom: 0;
+  left: 0%;
+  background-color: black;
+}
+@mixin sidebar-btn {
+  width: $sidebar-btn-size;
+  height: $sidebar-btn-size;
+  background-color: $sidebar-btn-background-color;
+  outline: $outline;
+  box-shadow: 0 0 $box-shadow-blur $box-shadow-color;
+  border-radius: $border-radius;
+  border: none;
+}
+@mixin sidebar-btn-icon {
+  width: $sidebar-icon-size;
+  height: $sidebar-icon-size;
+}
+@mixin search-bg {
+  background-color: $search-background-color;
+}
+@mixin search-size {
+  width: $search-width;
+  height: $search-height;
+}
+@mixin search-title {
+  font-size: $search-title-font-size;
+  margin-bottom: $search-title-margin;
+}
+
+@mixin search-icon {
+  width: $search-icon-size;
+  height: $search-icon-size;
+}
+@mixin recipes-size {
+  width: 100%;
+  max-height: 100vh;
+  overflow-y: auto;
+}
+@mixin recipes-bg {
+  background-color: $recipes-background-color;
+}
+@mixin recipe-item-title-size {
+  font-size: $recipe-item-title-font-size;
+}
+@mixin recipe-item-ingredients-size {
+  font-size: $recipe-item-ingredients-font-size;
+}
+@mixin recipe-item-icon-size {
+  width: $recipe-item-icon-size;
+  height: $recipe-item-icon-size;
+}
+
+@mixin recipe-details-size {
+  width: $recipe-details-width;
+}
+@mixin recipe-details-bg {
+  background-color: $recipe-details-background-color;
+  box-shadow: 0 0 $recipe-details-box-shadow-blur
+    $recipe-details-box-shadow-color;
+}
+
+@mixin recipe-details-title-size {
+  font-size: $recipe-details-title-font-size;
+}
+@mixin recipe-details-ingredients-size {
+  font-size: $recipe-details-ingredients-font-size;
+}
+@mixin recipe-details-description-size {
+  font-size: $recipe-details-description-font-size;
+}
+@mixin recipe-details-icon-size {
+  width: $recipe-details-icon-size;
+  height: $recipe-details-icon-size;
+}
+@mixin recipe-item-size {
+  width: $recipe-item-size-width;
+  height: $recipe-item-size-height;
+}
+
+@mixin recipe-item-bg {
+  background-color: $recipe-item-background-color;
+  box-shadow: 0 0 $recipe-item-box-shadow-blur $recipe-item-box-shadow-color;
+}
+@mixin recipe-item-margin {
+  margin: 1rem $recipe-item-margin;
+}
+@mixin font-color {
+  color: $text-color;
+}
+@mixin form-size {
+  width: $form-width;
+  height: 100vh;
+  z-index: 10001;
+}
+@mixin form-bg {
+  background-color: $form-background-color;
+}
+@mixin box-position-absolute {
+  position: absolute;
+  top: 0;
+}
+
+@mixin search-input {
+  width: $search-input-width;
+  height: $search-input-height;
+  box-shadow: 0 0 $box-shadow-blur $box-shadow-color;
+  outline: $outline;
+  border: none;
+  padding-left: $search-input-padding;
+}
+@mixin form-input {
+  width: $form-input-width;
+  height: $form-input-height;
+  border: $form-input-border-width $form-input-border-style
+    $form-input-border-color;
+  padding-left: $form-input-padding;
+  margin-bottom: $form-input-margin;
+  outline: $outline;
+  border-radius: $border-radius;
+}
+@mixin form-label {
+  font-size: $form-label-font-size;
+  font-weight: $form-label-font-size;
+  margin-bottom: $form-label-margin;
+}
+@mixin form-category-btn {
+  width: $form-category-button-width;
+  height: $form-category-button-height;
+  background-color: $form-category-button-background-color;
+  box-shadow: 0 0 $box-shadow-blur $box-shadow-color;
+  margin-right: $form-category-margin;
+  border-radius: $border-radius;
+}
+@mixin form-category-icon {
+  width: $form-category-icon-size;
+  height: $form-category-icon-size;
+}
+@mixin form-category-text {
+  font-size: $form-category-font-size;
+  color: $text-color;
+}
+@mixin form-title {
+  font-size: $form-title-font-size;
+  text-align: $text-align;
+  margin-bottom: $form-title-margin;
+}
+@mixin form-btn {
+  width: $form-btn-width;
+  height: $form-btn-height;
+
+  font-size: $form-btn-font-size;
+  margin-right: $form-btn-margin;
+  outline: $outline;
+  box-shadow: 0 0 $box-shadow-blur $box-shadow-color;
+  background-color: $form-btn-background-color;
+  border: none;
+  text-align: $text-align;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: $border-radius;
+  transition: $transition;
+}

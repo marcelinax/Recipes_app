@@ -1,0 +1,88 @@
+//global
+
+$text-color: black;
+$border-width: 1px;
+$border-color: black;
+$border-radius: 3px;
+$box-shadow-blur: 10px;
+$box-shadow-color: rgba(#000, 0.2);
+$text-align: center;
+$outline: none;
+$transition: all 0.3s;
+$icon-size: 20px;
+//sidebar
+$sidebar-background-color: white;
+$sidebar-category-margin: 1rem;
+$sidebar-width: 350px;
+$sidebar-category-font-size: 18px;
+$sidebar-icon-size: 25px;
+$sidebar-btn-size: 50px;
+$sidebar-btn-background-color: white;
+//search
+$search-width: 100%;
+$search-height: 100vh;
+$search-background-color: white;
+$search-input-width: 100%;
+$search-input-height: 30px;
+$search-input-padding: 0.5rem;
+$search-title-margin: 3rem;
+$search-title-font-size: 3rem;
+$search-icon-size: 20px;
+//recipes
+$recipes-background-color: #f7f7f7;
+
+//recipe item
+$recipe-item-title-font-size: 22px;
+$recipe-item-ingredients-font-size: 13px;
+$recipe-item-icon-size: 50px;
+$recipe-item-size-width: 344px;
+$recipe-item-size-height: 380px;
+$recipe-item-margin: 2rem;
+$recipe-item-background-color: white;
+$recipe-item-box-shadow-color: rgba(#000, 0.2);
+$recipe-item-box-shadow-blur: 10px;
+$recipe-item-padding: 1rem;
+
+//recipe details
+$recipe-details-title-font-size: 28px;
+$recipe-details-ingredients-font-size: 16px;
+$recipe-details-icon-size: 110px;
+$recipe-details-description-font-size: 16px;
+$recipe-details-background-color: white;
+$recipe-details-box-shadow-color: rgba(#000, 0.2);
+$recipe-details-box-shadow-blur: 20px;
+$recipe-details-width: 1000px;
+
+// form
+$form-width: 100%;
+$form-background-color: white;
+$form-input-width: 350px;
+$form-input-height: 30px;
+$form-input-border-style: solid;
+$form-input-border-color: #e4e4e4;
+$form-input-border-width: 1px;
+$form-input-padding: 0.5rem;
+$form-input-margin: 1rem;
+$form-label-font-size: 1.2rem;
+$form-label-font-weight: 500;
+$form-label-margin: 0.5rem;
+
+//form category btns
+$form-category-button-width: 100px;
+$form-category-button-height: 80px;
+$form-category-button-background-color: white;
+$form-category-icon-size: 40px;
+$form-category-font-size: 13px;
+$form-category-margin: 1rem;
+
+//form title
+$form-title-font-size: 3rem;
+$form-title-margin: 10rem;
+
+//from btns
+$form-btn-width: 200px;
+$form-btn-height: 40px;
+$form-btn-background-color: white;
+$form-btn-font-size: 1rem;
+$form-btn-margin: 1rem;
+$form-btn-transform: -10px;

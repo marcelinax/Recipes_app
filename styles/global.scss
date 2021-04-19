@@ -1,0 +1,310 @@
+@import "mixins";
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+}
+body {
+  @include font-color;
+}
+main {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  .form-recipe {
+    @include form-bg;
+    @include box-position-absolute;
+    @include hidden-box;
+    @include flex-center;
+    flex-direction: column;
+    transition: $transition;
+    &--active {
+      @include form-size;
+      opacity: 1;
+    }
+    h1 {
+      @include form-title;
+    }
+    .row {
+      @include flex-center;
+      margin-top: 5rem;
+      margin-bottom: 10rem;
+    }
+    .form-group {
+      @include flex-column;
+      .categories {
+        display: flex;
+        justify-content: center;
+        .category-btn {
+          @include form-category-btn;
+          border: 0;
+          transition: $transition;
+          &:last-child {
+            margin-right: 0;
+          }
+          &:hover {
+            border: 1px solid black;
+          }
+          .icon {
+            @include form-category-icon;
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            margin: auto;
+            margin-bottom: 0.5rem;
+            filter: invert(1);
+          }
+          .name {
+            @include form-category-text;
+          }
+        }
+      }
+      input,
+      textarea {
+        @include form-input;
+      }
+      textarea {
+        height: 114px;
+        resize: none;
+      }
+    }
+    .inputs-col {
+      @include flex-column;
+      padding-right: 3rem;
+
+      input {
+        margin-bottom: $form-input-margin;
+      }
+    }
+    .form-group {
+      label {
+        @include form-label;
+      }
+    }
+    .btns-box {
+      display: flex;
+      .btn {
+        @include form-btn;
+        &:last-child {
+          margin-right: 0;
+        }
+        &:hover {
+          transform: translateY($form-btn-transform);
+        }
+      }
+    }
+  }
+  .search-recipe {
+    @include hidden-box;
+    @include search-bg;
+    @include box-position-absolute;
+    @include flex-center;
+    flex-direction: column;
+    transition: $transition;
+    &--active {
+      @include search-size;
+      opacity: 1;
+      z-index: 10000;
+    }
+    .close-search-btn {
+      @include search-icon;
+      background-image: url(/assets/close.svg);
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      transition: $transition;
+      cursor: pointer;
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+    h1 {
+      @include search-title;
+    }
+    .input-box {
+      width: 50%;
+      position: relative;
+      input {
+        @include search-input;
+        position: relative;
+      }
+      .search-icon {
+        width: 40px;
+        height: 100%;
+        background-color: white;
+        position: absolute;
+        right: -0.5rem;
+        top: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        img {
+          width: 70%;
+          height: 70%;
+        }
+      }
+    }
+  }
+
+  .sidebar {
+    @include sidebar-bg;
+    @include sidebar-size;
+    @include flex-center;
+    flex-direction: column;
+    position: relative;
+    .btns-box {
+      display: flex;
+      position: absolute;
+      top: 1rem;
+      .btn {
+        @include sidebar-btn;
+        @include flex-center;
+        transition: $transition;
+        &:first-child {
+          margin-right: 1rem;
+        }
+        &-icon {
+          @include sidebar-btn-icon;
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: cover;
+        }
+        &:hover {
+          border: $border-width solid $border-color;
+          transform: translateY(10px);
+        }
+      }
+    }
+    .categories {
+      @include flex-column;
+      @include flex-center;
+      .category {
+        @include sidebar-category;
+        margin-bottom: $sidebar-category-margin;
+        cursor: pointer;
+        position: relative;
+        &:hover {
+          &:after {
+            @include sidebar-category-hover;
+          }
+        }
+      }
+    }
+  }
+  .recipes {
+    @include recipes-bg;
+    @include recipes-size;
+    position: relative;
+    @include scroll;
+    .arrow {
+      @include icon-size;
+      position: absolute;
+      top: 50%;
+      background-position: center;
+      background-size: cover;
+      background-repeat: none;
+      cursor: pointer;
+      transition: $transition;
+      &:hover {
+        transform: scale(1.2);
+      }
+    }
+    // .left-arrow {
+    //   background-image: url(/assets/long-arrow-alt-left-solid.svg);
+    //   left: 2rem;
+    // }
+    // .right-arrow {
+    //   background-image: url(/assets/long-arrow-alt-right-solid.svg);
+    //   right: 2rem;
+    // }
+    .recipes-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 0.5rem 0;
+    }
+    .recipe-item {
+      @include recipe-item-bg;
+      @include recipe-item-size;
+      @include recipe-item-margin;
+      padding: $recipe-item-padding;
+      position: relative;
+      cursor: pointer;
+      transition: 0.2s all;
+
+      &-title {
+        @include recipe-item-title-size;
+        margin-bottom: 1rem;
+        width: 80%;
+      }
+      &-ingredients {
+        @include recipe-item-ingredients-size;
+        margin-top: 2rem;
+      }
+      &-category-icon {
+        @include recipe-item-icon-size;
+        filter: invert(1);
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+      }
+      &:hover {
+        transform: translateY(-5px);
+      }
+    }
+  }
+  .recipe-details {
+    @include hidden-box;
+    @include recipe-details-bg;
+    display: flex;
+    position: relative;
+    transition: $transition;
+
+    &--active {
+      @include recipe-details-size;
+      opacity: 1;
+    }
+
+    .close-btn {
+      width: 32px;
+      height: 32px;
+      position: absolute;
+      top: 3rem;
+      right: 3rem;
+      cursor: pointer;
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+    .recipe-box {
+      @include flex-column;
+      @include scroll;
+      width: calc(100% - 6rem);
+      padding: 5rem 3rem;
+      overflow-y: auto;
+
+      &-title {
+        @include recipe-details-title-size;
+        margin-top: 1.5rem;
+      }
+      &-ingredients {
+        @include recipe-details-ingredients-size;
+        margin-top: 1.5rem;
+      }
+      &-description {
+        @include recipe-details-description-size;
+        margin-top: 1.5rem;
+      }
+      &-category-icon {
+        @include recipe-details-icon-size;
+        filter: invert(1);
+      }
+    }
+  }
+}
