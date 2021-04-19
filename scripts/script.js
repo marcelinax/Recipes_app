@@ -37,7 +37,6 @@ class Recipe {
   }
   renderRecipe(recipeIndex) {
     const recipeItem = document.createElement("div");
-    recipeItem.dataset.recipeIndex = recipeIndex;
     const recipesList = document.querySelector(".recipes-list");
     recipeItem.classList.add("recipe-item");
     let content = `
@@ -49,6 +48,9 @@ class Recipe {
             )}" class='recipe-item-category-icon'>
 
         `;
+    recipeItem.addEventListener("click", () => {
+      recipes.showRecipe(this);
+    });
     recipeItem.innerHTML = content;
     recipesList.appendChild(recipeItem);
   }
@@ -62,7 +64,6 @@ class Recipes {
     this.initCategoryBtns();
     this.initDeleteRecipe();
     this.initSerchRecipe();
-    this.initShowRecipe();
     this.initCloseRecipe();
   }
   saveRecipeInLocalStorage() {
@@ -128,7 +129,7 @@ class Recipes {
       this.createNewRecipe();
     });
   }
-  showRecipe(index) {
+  showRecipe(recipe) {
     if (
       document
         .querySelector(".recipe-details")
@@ -154,27 +155,18 @@ class Recipes {
       <img class="close-btn" src='assets/close.svg'>
       <div class="recipe-box">
         <img class='recipe-box-category-icon' src="${getCategoryIcon(
-          this.recipes[index].category
+          recipe.category
         )}">
-        <h2 class="recipe-box-title">${this.recipes[index].title}</h2>
+        <h2 class="recipe-box-title">${recipe.title}</h2>
         <p class="recipe-box-ingredients"><strong>Ingredients:</strong> ${
-          this.recipes[index].ingredients
+          recipe.ingredients
         }</p>
         <p class="recipe-box-description"><strong>Preparation:</strong> ${
-          this.recipes[index].description
+          recipe.description
         }</p>
       </div>
       `;
     recipeDetails.innerHTML = content;
-  }
-  initShowRecipe() {
-    const recipes = document.querySelectorAll(".recipe-item");
-    recipes.forEach((recipe, index) => {
-      recipe.addEventListener("click", () => {
-        this.showRecipe(index);
-        this.initCloseRecipe();
-      });
-    });
   }
   initCloseRecipe() {
     const closeBtn = document.querySelector(".close-btn");
@@ -245,7 +237,6 @@ class Recipes {
     this.recipes.forEach((recipe, index) => {
       if (filteredRecipes.includes(recipe)) recipe.renderRecipe(index);
     });
-    this.initShowRecipe();
   }
   initSerchRecipe() {
     // document.getElementById("search-input").addEventListener("keyup", () => {
@@ -261,9 +252,8 @@ class Recipes {
     allCategoriesBtn.addEventListener("click", () => {
       document.querySelector(".recipes-list").innerHTML = "";
       this.recipes.forEach((recipe, index) => {
-        recipe.renderRecipe(index);
+        recipe.renderRecipe();
       });
-      this.initShowRecipe();
     });
   }
 }
