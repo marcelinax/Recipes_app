@@ -58,13 +58,13 @@ class Recipe {
 class Recipes {
   recipes = [];
   category;
+  searchingCategory = "";
   constructor() {
     this.readRecipeFromLocalStorage();
     this.initCreateNewRecipe();
     this.initCategoryBtns();
     this.initDeleteRecipe();
     this.initSerchRecipe();
-    this.initCloseRecipe();
   }
   saveRecipeInLocalStorage() {
     localStorage.setItem("recipes", JSON.stringify(this.recipes));
@@ -167,16 +167,9 @@ class Recipes {
       </div>
       `;
     recipeDetails.innerHTML = content;
-  }
-  initCloseRecipe() {
-    const closeBtn = document.querySelector(".close-btn");
-    if (closeBtn) {
-      closeBtn.addEventListener("click", () => {
-        document
-          .querySelector(".recipe-details")
-          .classList.toggle("recipe-details--active");
-      });
-    }
+    recipeDetails.querySelector(".close-btn").addEventListener("click", () => {
+      recipeDetails.classList.remove("recipe-details--active");
+    });
   }
 
   deleteRecipe(index) {
@@ -196,52 +189,41 @@ class Recipes {
     });
   }
 
-  //   searchRecipe() {
-  //     const inputValue = document.getElementById("search-input").value;
-  //     document.querySelector(".recipes-list").innerHTML = "";
-  //     [
-  //       ...this.recipes.filter((recipe) =>
-  //         recipe.title.toString().toLowerCase().includes(inputValue)
-  //       ),
-  //       ...this.recipes
-  //         .filter(
-  //           (recipe) =>
-  //             !recipe.title.toString().toLowerCase().includes(inputValue)
-  //         )
-  //         .filter((recipe) =>
-  //           recipe.ingredients.toString().toLowerCase().includes(inputValue)
-  //         ),
-  //       ...this.recipes
-  //         .filter(
-  //           (recipe) =>
-  //             !recipe.title.toString().toLowerCase().includes(inputValue)
-  //         )
-  //         .filter(
-  //           (recipe) =>
-  //             !recipe.ingredients.toString().toLowerCase().includes(inputValue)
-  //         )
-  //         .filter((recipe) =>
-  //           recipe.category.toString().toLowerCase().includes(inputValue)
-  //         ),
-  //     ].forEach((recipe) => {
-  //       recipe.renderRecipe();
-  //     });
-  //   }
-  searchRecipeByCategory(categoryName) {
+  searchRecipe() {
     document.querySelector(".recipes-list").innerHTML = "";
-    const filteredRecipes = this.recipes.filter(
-      (recipe) =>
-        recipe.category.toString().toLowerCase() === categoryName.toLowerCase()
-    );
+    const inputValue = document.getElementById("search-input").value;
 
-    this.recipes.forEach((recipe, index) => {
-      if (filteredRecipes.includes(recipe)) recipe.renderRecipe(index);
-    });
+    this.recipes
+      .filter(
+        (r) =>
+          r.title.includes(inputValue) ||
+          r.ingredients.includes(inputValue) ||
+          r.description.includes(inputValue)
+      )
+      .filter(
+        (r) =>
+          r.category.toString().toLowerCase() === this.searchingCategory ||
+          this.searchingCategory === ""
+      )
+      .forEach((recipe, index) => {
+        recipe.renderRecipe(index);
+      });
+  }
+  searchRecipeByCategory(categoryName) {
+    this.searchingCategory = categoryName.toLowerCase();
+    this.searchRecipe();
   }
   initSerchRecipe() {
-    // document.getElementById("search-input").addEventListener("keyup", () => {
-    //   this.searchRecipe();
-    // });
+    document
+      .getElementById("search-input")
+      .addEventListener("keypress", (e) => {
+        if (e.key === "Enter") {
+          this.searchRecipe();
+          document
+            .querySelector(".search-recipe")
+            .classList.remove("search-recipe--active");
+        }
+      });
     const categoryBtns = document.querySelectorAll(".category");
     categoryBtns.forEach((btn) => {
       btn.addEventListener("click", (e) => {
@@ -302,6 +284,3 @@ class UI {
 
 const recipes = new Recipes();
 const ui = new UI();
-
-// otwieranie się na nowo przepisu za każdym razem
-// nie działa pokazywanie się przepisu po  kliknięciu na kategorię
