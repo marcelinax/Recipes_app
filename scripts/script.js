@@ -35,11 +35,13 @@ class Recipe {
     this.category = category;
     this.renderRecipe();
   }
-  renderRecipe() {
+  renderRecipe(recipeIndex) {
     const recipeItem = document.createElement("div");
+    recipeItem.dataset.recipeIndex = recipeIndex;
     const recipesList = document.querySelector(".recipes-list");
     recipeItem.classList.add("recipe-item");
     let content = `
+      <img src='/assets/trash-solid.svg' class='recipe-item-delete-btn'/>
       <h3 class='recipe-item-title'>${this.title}</h3>
       <p class='recipe-item-ingredients'>${this.ingredients}</p>
             <img src="${getCategoryIcon(
@@ -58,8 +60,8 @@ class Recipes {
     this.readRecipeFromLocalStorage();
     this.initCreateNewRecipe();
     this.initCategoryBtns();
-    // this.initDeleteRecipe();
-    // this.initSerchRecipe();
+    this.initDeleteRecipe();
+    this.initSerchRecipe();
     this.initShowRecipe();
     this.initCloseRecipe();
   }
@@ -184,20 +186,23 @@ class Recipes {
       });
     }
   }
-  changePage() {}
-  //   deleteRecipe(index) {
-  //     this.recipes = [...this.recipes.filter((_, i) => i != index)];
-  //     this.saveRecipeInLocalStorage();
-  //     location.reload();
-  //   }
-  //   initDeleteRecipe() {
-  //     const deleteBtns = document.querySelectorAll(".recipe-delete-btn");
-  //     deleteBtns.forEach((btn, index) => {
-  //       btn.addEventListener("click", () => {
-  //         this.deleteRecipe(index);
-  //       });
-  //     });
-  //   }
+
+  deleteRecipe(index) {
+    document
+      .querySelector(".recipe-details")
+      .classList.remove("recipe-details--active");
+    this.recipes = [...this.recipes.filter((_, i) => i != index)];
+    this.saveRecipeInLocalStorage();
+    location.reload();
+  }
+  initDeleteRecipe() {
+    const deleteBtns = document.querySelectorAll(".recipe-item-delete-btn");
+    deleteBtns.forEach((btn, index) => {
+      btn.addEventListener("click", () => {
+        this.deleteRecipe(index);
+      });
+    });
+  }
 
   //   searchRecipe() {
   //     const inputValue = document.getElementById("search-input").value;
@@ -230,37 +235,37 @@ class Recipes {
   //       recipe.renderRecipe();
   //     });
   //   }
-  //   searchRecipeByCategory(categoryName) {
-  //     document.querySelector(".recipes-list").innerHTML = "";
-  //     this.recipes
-  //       .filter(
-  //         (recipe) =>
-  //           recipe.category.toString().toLowerCase() ===
-  //           categoryName.toLowerCase()
-  //       )
-  //       .forEach((recipe) => {
-  //         recipe.renderRecipe();
-  //       });
-  //   }
-  //   initSerchRecipe() {
-  //     document.getElementById("search-input").addEventListener("keyup", () => {
-  //       this.searchRecipe();
-  //     });
-  //     const categoryBtns = document.querySelectorAll(".category-btn");
-  //     categoryBtns.forEach((btn) => {
-  //       btn.addEventListener("click", (e) => {
-  //         this.searchRecipeByCategory(e.target.innerHTML);
-  //       });
-  //     });
-  //     const allCategoriesBtn = document.querySelector(".category-all-btn");
-  //     allCategoriesBtn.addEventListener("click", () => {
-  //       document.querySelector(".recipes-list").innerHTML = "";
-  //       this.recipes.forEach((recipe) => {
-  //         recipe.renderRecipe();
-  //       });
-  //       this.initShowRecipe();
-  //     });
-  //   }
+  searchRecipeByCategory(categoryName) {
+    document.querySelector(".recipes-list").innerHTML = "";
+    const filteredRecipes = this.recipes.filter(
+      (recipe) =>
+        recipe.category.toString().toLowerCase() === categoryName.toLowerCase()
+    );
+
+    this.recipes.forEach((recipe, index) => {
+      if (filteredRecipes.includes(recipe)) recipe.renderRecipe(index);
+    });
+    this.initShowRecipe();
+  }
+  initSerchRecipe() {
+    // document.getElementById("search-input").addEventListener("keyup", () => {
+    //   this.searchRecipe();
+    // });
+    const categoryBtns = document.querySelectorAll(".category");
+    categoryBtns.forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        this.searchRecipeByCategory(e.target.innerHTML);
+      });
+    });
+    const allCategoriesBtn = document.querySelector(".category-all");
+    allCategoriesBtn.addEventListener("click", () => {
+      document.querySelector(".recipes-list").innerHTML = "";
+      this.recipes.forEach((recipe, index) => {
+        recipe.renderRecipe(index);
+      });
+      this.initShowRecipe();
+    });
+  }
 }
 
 class UI {

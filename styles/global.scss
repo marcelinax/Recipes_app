@@ -49,9 +49,7 @@ main {
           }
           .icon {
             @include form-category-icon;
-            background-position: center;
-            background-size: cover;
-            background-repeat: no-repeat;
+            @include background-img;
             margin: auto;
             margin-bottom: 0.5rem;
             filter: invert(1);
@@ -110,10 +108,8 @@ main {
     }
     .close-search-btn {
       @include search-icon;
+      @include background-img;
       background-image: url(/assets/close.svg);
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-position: center;
       position: absolute;
       top: 2rem;
       right: 2rem;
@@ -171,9 +167,7 @@ main {
         }
         &-icon {
           @include sidebar-btn-icon;
-          background-position: center;
-          background-repeat: no-repeat;
-          background-size: cover;
+          @include background-img;
         }
         &:hover {
           border: $border-width solid $border-color;
@@ -200,8 +194,8 @@ main {
   .recipes {
     @include recipes-bg;
     @include recipes-size;
-    position: relative;
     @include scroll;
+    position: relative;
     .arrow {
       @include icon-size;
       position: absolute;
@@ -224,10 +218,11 @@ main {
     //   right: 2rem;
     // }
     .recipes-list {
-      display: flex;
+      @include flex-center;
+      align-items: flex-start;
       flex-wrap: wrap;
-      justify-content: center;
-      margin: 0.5rem 0;
+      height: calc(100vh - 1.5rem);
+      margin-top: 1.5rem;
     }
     .recipe-item {
       @include recipe-item-bg;
@@ -237,7 +232,14 @@ main {
       position: relative;
       cursor: pointer;
       transition: 0.2s all;
-
+      &-delete-btn {
+        @include icon-size;
+        position: absolute;
+        top: 0;
+        right: -2rem;
+        opacity: 0;
+        transition: $transition;
+      }
       &-title {
         @include recipe-item-title-size;
         margin-bottom: 1rem;
@@ -256,6 +258,9 @@ main {
       }
       &:hover {
         transform: translateY(-5px);
+        .recipe-item-delete-btn {
+          opacity: 1;
+        }
       }
     }
   }
